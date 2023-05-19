@@ -1,5 +1,6 @@
 package AuroraTech.Co.AuroraContent.Controller;
 
+import AuroraTech.Co.AuroraContent.Model.Content;
 import AuroraTech.Co.AuroraContent.Model.Image;
 //import AuroraTech.Co.AuroraContent.Service.ImageService;
 import AuroraTech.Co.AuroraContent.Repository.ImageRepository;
@@ -25,9 +26,8 @@ public class ImageController {
         return a;
     }
 
-    // Get image by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<Image> getImageById(@PathVariable int id) {
+    @GetMapping("/")
+    public ResponseEntity<Image> getImageById(@RequestParam ("id") Integer id) {
         Optional<Image> image = imageRepository.findById(id);
         if (image.isPresent()) {
             return new ResponseEntity<>(image.get(), HttpStatus.OK);
@@ -35,6 +35,16 @@ public class ImageController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    // Get image by ID
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Image> getImageById(@PathVariable int id) {
+//        Optional<Image> image = imageRepository.findById(id);
+//        if (image.isPresent()) {
+//            return new ResponseEntity<>(image.get(), HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
 
     // Create image
     @PostMapping()

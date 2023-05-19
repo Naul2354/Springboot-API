@@ -17,8 +17,12 @@ public class CategoryController {
     private CategoryRepository categoryRepository;
     //Send request to Http:http://localhost:9999/api/category
     //Use Get method find Category with id
-    @GetMapping("/{id}")
-    public Category getCategoryById(@PathVariable(value = "id") Integer id) {
+//    @GetMapping("/{id}")
+////    public Category getCategoryById(@PathVariable(value = "id") Integer id) {
+////        return categoryRepository.findById(id).orElse(null);
+////    }
+    @GetMapping("/")
+    public Category getCategoryById(@RequestParam("id") Integer id) {
         return categoryRepository.findById(id).orElse(null);
     }
     //Use Get method list all Category need to find

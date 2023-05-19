@@ -21,8 +21,8 @@ public class CustomerContactController {
     }
 
 
-    @GetMapping("/{id}")
-    public CustomerContact getContentById(@PathVariable(value = "id") int id) {
+    @GetMapping("/")
+    public CustomerContact getContentById(@RequestParam("id") int id) {
         CustomerContact customerContact = customerContactRepository.findById(id).orElse(null);
         return customerContact;
     }

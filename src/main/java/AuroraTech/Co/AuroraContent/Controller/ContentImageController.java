@@ -17,26 +17,33 @@ public class ContentImageController {
     @Autowired
     private ContentImageRepository contentImageRepository;
 
-    @GetMapping("/{contentId}/{imageId}")
-    public ContentImage getContentImageById(@PathVariable(value = "contentId") Integer contentId,
-                                            @PathVariable(value = "imageId") Integer imageId) {
-        ContentImageId id = new ContentImageId(contentId, imageId);
-        return contentImageRepository.findById(id).orElse(null);
+    //    @GetMapping("/{contentId}/{imageId}")
+//    public ContentImage getContentImageById(@PathVariable(value = "contentId") Integer contentId,
+//                                            @PathVariable(value = "imageId") Integer imageId) {
+//        ContentImageId id = new ContentImageId(contentId, imageId);
+//        return contentImageRepository.findById(id).orElse(null);
+//    }
+    @GetMapping("/")
+    public ContentImage getContentImageById(@RequestParam("contentId") Integer contentId,
+                                            @RequestParam("imageId") Integer imageId) {
+        return contentImageRepository.findByContentIdAndImageId(contentId, imageId).orElse(null);
     }
+
+
 
     @GetMapping()
     public List<ContentImage> getAllContentImages() {
         return contentImageRepository.findAll();
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ContentImage createContentImage(@RequestBody ContentImage contentImage) {
         return contentImageRepository.save(contentImage);
     }
+}
 
 //    @PutMapping("/{contentId}/{imageId}")
 //    public ContentImage updateContentImage(@PathVariable(value = "contentId") Integer contentId,
-//                                           @PathVariable(value = "imageId") Integer imageId,
-//                                           @RequestBody Content
-
-}
+//                                           @PathVariable(value = "imageId") Integer imageId,@RequestBody Content)
+//
+//}

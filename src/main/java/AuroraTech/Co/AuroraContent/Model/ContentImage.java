@@ -24,11 +24,6 @@ public class ContentImage {
     public ContentImage(ContentImageId id) {
         this.id = id;
     }
-
-    // getters and setters
-    public int getImageId() {
-        return id.getImageId();
-    }
     public ContentImageId getId() {
         return id;
     }
@@ -37,21 +32,21 @@ public class ContentImage {
         this.id = id;
     }
 
-    public Content getContent() {
-        return content;
-    }
-
-    public void setContent(Content content) {
-        this.content = content;
-    }
-
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
+//    public Content getContent() {
+//        return content;
+//    }
+//
+//    public void setContent(Content content) {
+//        this.content = content;
+//    }
+//
+//    public Image getImage() {
+//        return image;
+//    }
+//
+//    public void setImage(Image image) {
+//        this.image = image;
+//    }
     //toString
 
 }

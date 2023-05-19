@@ -3,27 +3,42 @@ package AuroraTech.Co.AuroraContent.Controller;
 import AuroraTech.Co.AuroraContent.Model.Content;
 //import AuroraTech.Co.AuroraContent.Service.ContentService;
 import AuroraTech.Co.AuroraContent.Repository.ContentRepository;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/content")
 public class ContentController {
-
+    private static final Logger logger = LoggerFactory.getLogger(ContentController.class);
     @Autowired
     private ContentRepository contentRepository;
+    @GetMapping("/")
+    public ResponseEntity<?> getContentById(@RequestParam("id") Integer id) {
+        Optional<Content> optionalContent = contentRepository.findById(id);
 
-    @GetMapping("/{id}")
-    public Content getContentById(@RequestParam(value = "id") Integer id) {
-        return contentRepository.findById(id).orElse(null);
+        if (optionalContent.isPresent()) {
+            Content content = optionalContent.get();
+            return ResponseEntity.ok(content);
+        } else {
+            String message = "Content not found with id = " + id;
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        }
     }
+//    @GetMapping("/")
+//    public Content getContentById(@RequestParam("id") Integer id) {
+//        return contentRepository.findById(id).orElse(null);
+//    }
 
-
-    @GetMapping() //giong nhu select * From bla bla
+    @GetMapping()
     public List<Content> getAllContents() {
         return contentRepository.findAll();
     }
