@@ -13,7 +13,8 @@ public class Image {
     private int id;
     private String name;
     private LocalDateTime createdTime;
-    private byte[] image;
+    @Lob
+    private String image;
 
 
 //    @OneToMany(mappedBy = "image",cascade = CascadeType.ALL)
@@ -46,11 +47,11 @@ public class Image {
         this.createdTime = createdTime;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -63,7 +64,7 @@ public class Image {
 //    }
     // getters and setters
 
-    public Image(int id, String name, LocalDateTime createdTime, byte[] image, List<ContentImage> contentImages) {
+    public Image(int id, String name, LocalDateTime createdTime, String image, List<ContentImage> contentImages) {
         this.id = id;
         this.name = name;
         this.createdTime = createdTime;

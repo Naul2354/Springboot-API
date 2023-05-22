@@ -6,6 +6,7 @@ import AuroraTech.Co.AuroraContent.Model.ContentImage;
 import AuroraTech.Co.AuroraContent.Model.ContentImageId;
 import AuroraTech.Co.AuroraContent.Repository.ContentImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,10 +41,29 @@ public class ContentImageController {
     public ContentImage createContentImage(@RequestBody ContentImage contentImage) {
         return contentImageRepository.save(contentImage);
     }
+    @PutMapping("/{contentId}/{imageId}")
+    public ResponseEntity<ContentImage> updateContentImage(
+        @PathVariable("contentId") int contentId,
+        @PathVariable("imageId") int imageId,
+        @RequestBody ContentImage updatedContentImage) {
+
+        // Check if the content image exists
+        ContentImage existingContentImage = contentImageRepository.findById(new ContentImageId(contentId, imageId))
+            .orElse(null);
+
+        if (existingContentImage == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Update the content image
+        existingContentImage.setContent(updatedContentImage.getContent());
+        existingContentImage.setImage(updatedContentImage.getImage());
+
+        // Save the updated content image
+        ContentImage savedContentImage = contentImageRepository.save(existingContentImage);
+
+        return ResponseEntity.ok(savedContentImage);
+    }
+
 }
 
-//    @PutMapping("/{contentId}/{imageId}")
-//    public ContentImage updateContentImage(@PathVariable(value = "contentId") Integer contentId,
-//                                           @PathVariable(value = "imageId") Integer imageId,@RequestBody Content)
-//
-//}

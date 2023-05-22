@@ -8,14 +8,14 @@ public class ContentImage {
     @EmbeddedId
     private ContentImageId id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
     @MapsId("contentId")
     @JoinColumn(name = "content_id")
+    @ManyToOne(cascade = CascadeType.ALL, optional = true)
     private Content content;
 
-    @ManyToOne(cascade = CascadeType.ALL)
     @MapsId("imageId")
     @JoinColumn(name = "image_id")
+    @ManyToOne
     private Image image;
     //constructor
     public ContentImage(){
@@ -32,21 +32,21 @@ public class ContentImage {
         this.id = id;
     }
 
-//    public Content getContent() {
-//        return content;
-//    }
-//
-//    public void setContent(Content content) {
-//        this.content = content;
-//    }
-//
-//    public Image getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(Image image) {
-//        this.image = image;
-//    }
+    public Content getContent() {
+        return content;
+    }
+
+    public void setContent(Content content) {
+        this.content = content;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
     //toString
 
 }

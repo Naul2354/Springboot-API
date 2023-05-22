@@ -14,7 +14,7 @@ import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-
+@CrossOrigin(origins = "http://20.187.126.190:9999")
 @RestController
 @RequestMapping("/api/content")
 public class ContentController {

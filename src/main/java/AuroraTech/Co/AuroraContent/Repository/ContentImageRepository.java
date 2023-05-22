@@ -11,6 +11,4 @@ import java.util.Optional;
 
 @Repository
 public interface ContentImageRepository extends JpaRepository<ContentImage, ContentImageId> {
-//    List<ContentImage> findByContentId(int ContentImageId);
-    Optional<ContentImage> findByContentIdAndImageId(@Param("contentId") Integer contentId, @Param("imageId") Integer imageId);
-}
+    Optional<ContentImage> findByContentIdAndImageId(@Param("contentId") Integer contentId, @Param("imageId") Integer imageId);}

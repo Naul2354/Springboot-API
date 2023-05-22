@@ -9,7 +9,7 @@ import java.util.List;
 @Table(name = "content")
 public class Content {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String content;
     private String title;

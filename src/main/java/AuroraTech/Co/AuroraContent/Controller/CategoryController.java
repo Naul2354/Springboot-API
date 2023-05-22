@@ -8,14 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://20.187.126.190:9999")
 @RestController
 @RequestMapping("/api/category")
 public class CategoryController {
 
     @Autowired
     private CategoryRepository categoryRepository;
-    //Send request to Http:http://localhost:9999/api/category
     //Use Get method find Category with id
 //    @GetMapping("/{id}")
 ////    public Category getCategoryById(@PathVariable(value = "id") Integer id) {

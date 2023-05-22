@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+@CrossOrigin(origins = "http://20.187.126.190:9999")
 
 @RestController
 @RequestMapping("/api/customer-contacts")
